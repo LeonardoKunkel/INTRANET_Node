@@ -1,10 +1,6 @@
 const { Schema, model } = require('mongoose');
 
 const InfoSchema = Schema({
-    apellidos: {
-        type: String,
-        required: [true, 'Los apellidos son obligatorios']
-    },
     cel: {
         type: Number,
         required: [true, 'El número de celular es obligatorio']
@@ -49,13 +45,13 @@ const InfoSchema = Schema({
         type: String,
         required: [true, 'El código postal es obligatorio']
     },
+    img: {
+        type: String
+    },
     usuario: {
         type: Schema.Types.ObjectId,
         ref: 'Usuario',
         required: true
-    },
-    img: {
-        type: String
     },
 });
 
