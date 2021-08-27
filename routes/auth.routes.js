@@ -3,9 +3,11 @@ const { check } = require('express-validator');
 
 const  validarCampos  = require('../middlewares/validar-campos');
 
-const { login } = require('../controllers/auth.controller');
+const { login, validarToken } = require('../controllers/auth.controller');
+const validarJWT = require('../middlewares/validar-jwt');
 
 const router = Router();
+
 
 router.post('/login', [
     check('correo', 'El correo obligatorio').isEmail(),
@@ -13,8 +15,6 @@ router.post('/login', [
     validarCampos
 ], login );
 
-
-// router.post('/login', [], login)
-
+router.get('/renew', validarJWT, validarToken);
 
 module.exports = router;

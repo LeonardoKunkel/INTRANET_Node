@@ -40,7 +40,10 @@ const login = async(req, res = response) => {
         const token = await generarJWT( usuario.id );
         
         res.json({
-            usuario,
+            ok: true,
+            uid: usuario.id,
+            nombre: usuario.nombre,
+            correo: usuario.correo,
             token
         });
     
@@ -48,13 +51,31 @@ const login = async(req, res = response) => {
     } catch (error) {
         console.log(error);
         return res.status(500).json({
+            ok: false,
             msg: 'Hable con el administrador'
         });
     }
 
 }
 
+const validarToken = async( req, res = response ) => {
+
+    const { uid } = req;
+    
+    // Leer la base de datos
+    // const dbUser = await Usuario.findById(uid);
+    
+    // Generar un nuevo JWT
+    const token = await generarJWT( uid );
+    
+    return res.json({
+        ok: true,
+        token
+    })
+
+}
 
 module.exports = {
-    login
+    login,
+    validarToken
 };

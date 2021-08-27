@@ -22,7 +22,20 @@ const UsuarioSchema = Schema({
     status: {
         type: Boolean,
         default: true
-    }
+    },
+    puesto: { type: String },
+    cel: { type: Number },
+    empresa: { type: String },
+    genero: { type: String },
+    estado: { type: Boolean },
+    fecha: { type: String },
+    curp: { type: String },
+    calle: { type: String },
+    colonia: { type: String },
+    municipio: { type: String },
+    edo: { type: String },
+    cp: { type: Number },
+    img: { type: String },
 });
 
 UsuarioSchema.methods.toJSON = function() {
